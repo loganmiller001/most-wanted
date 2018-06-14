@@ -100,14 +100,6 @@ function searchByName(people){
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
-    return person.gender + " ";
-    return person.dob + " ";
-    return person.height + " ";
-    return person.weight + " ";
-    return person.eyeColor + " "
-    return person.occupation + " ";
-    return person.parents + " ";
-    return person.currentSpouse + " ";
   }).join("\n"));
 }
 
@@ -124,6 +116,14 @@ function displayPerson(person){
   personInfo += "Occupation" + person.occupation + "\n";
   personInfo += "Parents" + person.parents + "\n";
   personInfo += "Spouse" + person.currentSpouse + "\n";
+    return person.gender + " ";
+    return person.dob + " ";
+    return person.height + " ";
+    return person.weight + " ";
+    return person.eyeColor + " "
+    return person.occupation + " ";
+    return person.parents + " ";
+    return person.currentSpouse + " ";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
