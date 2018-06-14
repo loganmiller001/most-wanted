@@ -100,6 +100,14 @@ function searchByName(people){
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
+    return person.gender + " ";
+    return person.dob + " ";
+    return person.height + " ";
+    return person.weight + " ";
+    return person.eyeColor + " "
+    return person.occupation + " ";
+    return person.parents + " ";
+    return person.currentSpouse + " ";
   }).join("\n"));
 }
 
@@ -108,6 +116,14 @@ function displayPerson(person){
   // height, weight, age, name, occupation, eye color.
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "Gender" + person.gender + "\n";
+  personInfo += "Date of Birth" + person.dob + "\n";
+  personInfo += "Height" + person.height + "\n";
+  personInfo += "Weight" + person.weight + "\n";
+  personInfo += "Eye Color" + person.eyeColor + "\n";
+  personInfo += "Occupation" + person.occupation + "\n";
+  personInfo += "Parents" + person.parents + "\n";
+  personInfo += "Spouse" + person.currentSpouse + "\n";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
