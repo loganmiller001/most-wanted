@@ -7,7 +7,8 @@ function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
     case 'yes':
-    // TODO: search by name
+    searchByName(people);
+    displayPerson(person);
     break;
     case 'no':
     searchByTraits(people);
@@ -24,6 +25,9 @@ function searchByTraits(people) {
   let filteredPeople;
 
   switch(userSearchChoice) {
+    case "full name":
+      filteredPeople = searchByName(people)
+      break;
     case "tall":
       filteredPeople = searchByTall(people);
       break;
@@ -172,9 +176,31 @@ function mainMenu(person, people){
 }
 
 function searchByName(people){
-  var firstName = promptFor("What is the person's first name?", chars);
-  var lastName = promptFor("What is the person's last name?", chars);
+  var userInputFirstName = promptFor("What is the person's first name?", chars);
+  var userInputLastName = promptFor("What is the person's last name?", chars);
+  // let fullName = (firstName + lastName);
+  let newArray = people.filter(function (el) {
+    if(el.firstName === userInputFirstName && el.lastName === userInputLastName) {
+      return true;
+    }
+
+  });
+
+  return newArray;
 }
+
+// function searchByWeight(people) {
+//   let userInputWeight = prompt("How much does the person weigh?");
+
+//   let newArray = people.filter(function (el) {
+//     if(el.weight == userInputWeight) {
+//       return true;
+//     }
+//     // return true if el.height matches userInputHeight
+//   });
+
+//   return newArray;
+
 
   // TODO: find the person using the name they entered
 
@@ -200,6 +226,8 @@ function displayPerson(person){
   personInfo += "Occupation" + person.occupation + "\n";
   personInfo += "Parents" + person.parents + "\n";
   personInfo += "Spouse" + person.currentSpouse + "\n";
+    return person.firstName + " ";
+    return person.lastName + " ";
     return person.gender + " ";
     return person.dob + " ";
     return person.tall + " ";
