@@ -1,7 +1,7 @@
 /*
 Build all of your functions for displaying and gathering information below (GUI).
 */
-
+debugger;
 // app is the function called to start the entire application
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
@@ -30,6 +30,14 @@ function searchByTraits(people) {
     case "weight":
       filteredPeople = searchByWeight(people);
       break;
+    case "age":
+      filteredPeople = searchByAge(people);
+      break;
+    case "occupation":
+      filteredPeople = searchByOccupation(people);
+      break;
+    case "eyeColor":
+      filteredPeople = searchByEyeColor(people);
     // so on and so forth
     default:
       alert("You entered an invalid search type! Please try again.");
@@ -50,7 +58,19 @@ function searchByWeight(people) {
     if(el.weight == userInputWeight) {
       return true;
     }
-    // return true if el.height matches userInputHeight
+    // return true if el.height matches userInputWeight
+  });
+
+  return newArray;
+}
+
+function searchByTall(people){
+  let userInputTall = prompt("How tall is the person in inches?");
+
+  let newArray = people.filter(function (el) {
+    if(el.tall == userInputHeight) {
+      return true;
+    }
   });
 
   return newArray;
@@ -100,14 +120,6 @@ function searchByName(people){
 function displayPeople(people){
   alert(people.map(function(person){
     return person.firstName + " " + person.lastName;
-    return person.gender + " ";
-    return person.dob + " ";
-    return person.height + " ";
-    return person.weight + " ";
-    return person.eyeColor + " "
-    return person.occupation + " ";
-    return person.parents + " ";
-    return person.currentSpouse + " ";
   }).join("\n"));
 }
 
@@ -124,6 +136,14 @@ function displayPerson(person){
   personInfo += "Occupation" + person.occupation + "\n";
   personInfo += "Parents" + person.parents + "\n";
   personInfo += "Spouse" + person.currentSpouse + "\n";
+    return person.gender + " ";
+    return person.dob + " ";
+    return person.height + " ";
+    return person.weight + " ";
+    return person.eyeColor + " "
+    return person.occupation + " ";
+    return person.parents + " ";
+    return person.currentSpouse + " ";
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
