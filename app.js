@@ -20,12 +20,12 @@ function app(people){
 }
 
 function searchByTraits(people) {
-  let userSearchChoice = prompt("What would you like to search by? 'height', 'weight', 'eye color', 'gender', 'age', 'occupation'.");
+  let userSearchChoice = prompt("What would you like to search by? 'tall', 'weight', 'eye color', 'gender', 'age', 'occupation'.");
   let filteredPeople;
 
   switch(userSearchChoice) {
-    case "height":
-      filteredPeople = searchByHeight(people);
+    case "tall":
+      filteredPeople = searchByTall(people);
       break;
     case "weight":
       filteredPeople = searchByWeight(people);
@@ -36,8 +36,12 @@ function searchByTraits(people) {
     case "occupation":
       filteredPeople = searchByOccupation(people);
       break;
-    case "eyeColor":
-      filteredPeople = searchByEyeColor(people);
+    case "eyes":
+      filteredPeople = searchByEyes(people);
+      break;
+    case "gender":
+      filteredPeople = searchByGender(people);
+      break;
     // so on and so forth
     default:
       alert("You entered an invalid search type! Please try again.");
@@ -58,7 +62,7 @@ function searchByWeight(people) {
     if(el.weight == userInputWeight) {
       return true;
     }
-    // return true if el.height matches userInputWeight
+    // return true if el.height matches userInputHeight
   });
 
   return newArray;
@@ -68,7 +72,55 @@ function searchByTall(people){
   let userInputTall = prompt("How tall is the person in inches?");
 
   let newArray = people.filter(function (el) {
-    if(el.tall == userInputHeight) {
+    if(el.tall == userInputTall) {
+      return true;
+    }
+  });
+
+  return newArray;
+}
+
+function searchByGender(people){
+  let userInputGender = prompt("What is the person's gender?");
+
+  let newArray = people.filter(function (el) {
+    if(el.gender == userInputGender) {
+      return true;
+    }
+  });
+
+  return newArray;
+}
+
+function searchByAge(people){
+  let userInputAge = prompt("How old is the person?");
+
+  let newArray = people.filter(function (el) {
+    if(el.age == userInputAge) {
+      return true;
+    }
+  });
+
+  return newArray;
+}
+
+function searchByOccupation(people){
+  let userInputOccupation = prompt("What is this person's occupation?");
+
+  let newArray = people.filter(function (el) {
+    if(el.occupation == userInputOccupation) {
+      return true;
+    }
+  });
+
+  return newArray;
+}
+
+function searchByEyes(people){
+  let userEyes = prompt("What color eyes does the person have?");
+
+  let newArray = people.filter(function (el){
+    if(el.eyes == userInputEyes) {
       return true;
     }
   });
@@ -122,10 +174,11 @@ function mainMenu(person, people){
 function searchByName(people){
   var firstName = promptFor("What is the person's first name?", chars);
   var lastName = promptFor("What is the person's last name?", chars);
+}
 
   // TODO: find the person using the name they entered
 
-}
+
 
 // alerts a list of people
 function displayPeople(people){
@@ -136,22 +189,22 @@ function displayPeople(people){
 
 function displayPerson(person){
   // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
+  // tall, weight, age, name, occupation, eye color.
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender" + person.gender + "\n";
   personInfo += "Date of Birth" + person.dob + "\n";
-  personInfo += "Height" + person.height + "\n";
+  personInfo += "Tall" + person.tall + "\n";
   personInfo += "Weight" + person.weight + "\n";
-  personInfo += "Eye Color" + person.eyeColor + "\n";
+  personInfo += "Eyes" + person.eyes + "\n";
   personInfo += "Occupation" + person.occupation + "\n";
   personInfo += "Parents" + person.parents + "\n";
   personInfo += "Spouse" + person.currentSpouse + "\n";
     return person.gender + " ";
     return person.dob + " ";
-    return person.height + " ";
+    return person.tall + " ";
     return person.weight + " ";
-    return person.eyeColor + " "
+    return person.eyes + " ";
     return person.occupation + " ";
     return person.parents + " ";
     return person.currentSpouse + " ";
