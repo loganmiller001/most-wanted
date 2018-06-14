@@ -76,6 +76,17 @@ function searchByTall(people){
   return newArray;
 }
 
+function calculateAge(person, currentDate){
+  person.dob = new Date(person.dob);
+  currentDate = new Date(currentDate);
+
+  let years = (currentDate.getFullYear() - person.dob.getFullYear());
+  if (currentDate.getMonth() < person.dob.getMonth() ||
+    currentDate.getMonth() == person.dob.getMonth() && currentDate.getDate() < person.dob.getDate()){
+    years --;
+  }
+  return years; 
+}
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
