@@ -92,9 +92,9 @@ function searchByGender(people){
   return newArray;
 }
 
-function searchByAge(people){
+function searchByAge(people, person){
   let userInputAge = prompt("How old is the person?");
-
+    console.log(calculateAge());
   let newArray = people.filter(function (el) {
     if(el.age == userInputAge) {
       return true;
@@ -193,13 +193,15 @@ function displayPerson(person){
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender" + person.gender + "\n";
-  personInfo += "Date of Birth" + person.dob + "\n";
+  personInfo += "Age" + person.dob + "\n";
   personInfo += "Tall" + person.tall + "\n";
   personInfo += "Weight" + person.weight + "\n";
   personInfo += "Eyes" + person.eyes + "\n";
   personInfo += "Occupation" + person.occupation + "\n";
   personInfo += "Parents" + person.parents + "\n";
   personInfo += "Spouse" + person.currentSpouse + "\n";
+    return person.firstName + " ";
+    return person.lastName + " ";
     return person.gender + " ";
     return person.dob + " ";
     return person.tall + " ";
