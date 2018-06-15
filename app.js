@@ -199,6 +199,8 @@ function mainMenu(person, people){
     // TODO: get person's family
     break;
     case "descendants":
+    let descendants = displayDescendants(person);
+    alert(descendants);
     // TODO: get person's descendants
     break;
     case "restart":
@@ -228,6 +230,15 @@ function searchByName(people){
 
   return newArray[0];
 }
+
+// function displayDescendants(person, people){
+//   let newArray = people.filter(function (el) {
+//     if (el.parents === el.id) 
+  
+//     return true;
+//   });
+//   return newArray[0];
+// }
 
 function displayPeople(people){
   alert(people.map(function(person){
