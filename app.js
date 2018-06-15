@@ -93,17 +93,7 @@ function searchByGender(people){
   return newArray;
 }
 
-// function searchByAge(people)   {
-//   let userInputAge = prompt("How old is the person?");
-//   let newArray = people.filter(function (el){
-//     if(el.age == userInputAge) {
-//       return true;
 
-//     }
-//   })
-
-//   return newArray;
-// }
 
 function searchByOccupation(people){
   let userInputOccupation = prompt("What is this person's occupation?");
