@@ -93,17 +93,6 @@ function searchByGender(people){
   return newArray;
 }
 
-function searchByAge(people)   {
-  let userInputAge = prompt("How old is the person?");
-  let newArray = people.filter(function (el){
-    if(el.age == userInputAge) {
-      return true;
-
-    }
-  })
-
-  return newArray;
-}
 
 function searchByOccupation(people){
   let userInputOccupation = prompt("What is this person's occupation?");
@@ -142,14 +131,39 @@ debugger;
 //   return age;
 // }
 
-function getAge() {
-  let birthDate = new Date("1997/5/19");
+function searchByAge(people)   {
+  let userInputAge = prompt("How old is the person?");
+  let age = getAge();
+  let newArray = people.filter(function (el)
+// { for (var i = age.length - 1; i >= 0; i--) {
+//   dob[i];
+// }
+
+//     {
+//     if(el.age == userInputAge) {
+//       return true;
+
+//     }
+//   }
+// })
+
+
+  {return newArray;
+})
+}
+
+
+function getAge(people) {
+  let x = people.dob;
+  let birthDate = new Date();
   let currentDate = new Date();
   let difference = (currentDate - birthDate);
   let age = Math.floor(difference/31557600000);
-  return age;
-}
+  let newArray = people.filter(function(el){
 
+  return age;
+})
+}
 
 // function calculateAge(person, currentDate){
 //   person.dob = new Date(person.dob);
