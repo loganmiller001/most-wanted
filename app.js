@@ -93,17 +93,17 @@ function searchByGender(people){
   return newArray;
 }
 
-function searchByAge(people)   {
-  let userInputAge = prompt("How old is the person?");
-  let newArray = people.filter(function (el){
-    if(el.age == userInputAge) {
-      return true;
+// function searchByAge(people)   {
+//   let userInputAge = prompt("How old is the person?");
+//   let newArray = people.filter(function (el){
+//     if(el.age == userInputAge) {
+//       return true;
 
-    }
-  })
+//     }
+//   })
 
-  return newArray;
-}
+//   return newArray;
+// }
 
 function searchByOccupation(people){
   let userInputOccupation = prompt("What is this person's occupation?");
@@ -115,6 +115,25 @@ function searchByOccupation(people){
   });
 
   return newArray;
+}
+
+function searchByAge(people){
+  let userInputAge = prompt("How old is the person?");
+  let age = getAge();
+  let newArray = people.filter(function (el) {
+    if(el.dob === userInputAge)
+      return true;
+  });
+  return newArray;
+}
+
+function getAge(person) {
+  let x = person.dob.split(" / ").reverse().join(" ");
+  let birthDate = new Date(x);
+  let currentDate = new Date();
+  let difference = (currentDate - birthDate);
+  let age = Math.floor(difference/31557600000);
+  return age;
 }
 
 function searchByEyeColor(people){
@@ -131,37 +150,17 @@ function searchByEyeColor(people){
 
 debugger;
 
-// function getAge(people) {
-//   let todaysDate = new Date();
-//   let birthDate = new Date();
-//   let age = today.getFullYear() - birthDate.getFullYear();
-//   let m = today.getMonth() - birthDate.getMonth();
-//   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())){
-//     age--;
-//   }
+// function getAge(person) {
+//   let x = person.dob.split(" / ").reverse().join(" ");
+//   let birthDate = new Date(x);
+//   let currentDate = new Date();
+//   let difference = (currentDate - birthDate);
+//   let age = Math.floor(difference/31557600000);
 //   return age;
 // }
 
-function getAge() {
-  let birthDate = new Date("1997/5/19");
-  let currentDate = new Date();
-  let difference = (currentDate - birthDate);
-  let age = Math.floor(difference/31557600000);
-  return age;
-}
 
 
-// function calculateAge(person, currentDate){
-//   person.dob = new Date(person.dob);
-//   currentDate = new Date(currentDate);
-
-//   let years = (currentDate.getFullYear() - person.dob.getFullYear());
-//   if (currentDate.getMonth() < person.dob.getMonth() ||
-//     currentDate.getMonth() == person.dob.getMonth() && currentDate.getDate() < person.dob.getDate()){
-//     years --;
-//   }
-//   return years; 
-// }
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
@@ -202,7 +201,6 @@ function mainMenu(person, people){
 function searchByName(people){
   let userInputFirstName = promptFor("What is the person's first name?", chars);
   let userInputLastName = promptFor("What is the person's last name?", chars);
-  // let fullName = (firstName + lastName);
   let newArray = people.filter(function (el) {
     if(el.firstName.toLowerCase() === userInputFirstName.toLowerCase()) {
       if(el.lastName.toLowerCase() === userInputLastName.toLowerCase()) {
@@ -217,14 +215,14 @@ function searchByName(people){
   return newArray[0];
 }
 
-// function displayDescendants(person, people){
-//   let newArray = people.filter(function (el) {
-//     if (el.parents === el.id) 
+function displayDescendants(people){
+  let newArray = people.map(function (el) {
+    if (el.parents === el.id) 
   
-//     return true;
-//   });
-//   return newArray[0];
-// }
+    return true;
+  });
+  return newArray[0];
+}
 
 function displayPeople(people){
   alert(people.map(function(person){
@@ -244,16 +242,6 @@ function displayPerson(person){
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
   personInfo += "Spouse: " + person.currentSpouse + "\n";
-    // return person.firstName + " ";
-    // return person.lastName + " ";
-    // return person.gender + " ";
-    // return person.dob + " ";
-    // return person.tall + " ";
-    // return person.weight + " ";
-    // return person.eyeColor + " ";
-    // return person.occupation + " ";
-    // return person.parents + " ";
-    // return person.currentSpouse + " ";
     return personInfo;
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
