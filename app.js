@@ -1,7 +1,6 @@
 /*
 Build all of your functions for displaying and gathering information below (GUI).
 */
-debugger;
 // app is the function called to start the entire application
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
@@ -26,7 +25,7 @@ function searchByTraits(people) {
 
   switch(userSearchChoice) {
     case "name":
-      filteredPeople = searchByName(people)
+      filteredPeople = searchByName(people);
       break;
     case "tall":
       filteredPeople = searchByTall(people);
@@ -94,14 +93,14 @@ function searchByGender(people){
   return newArray;
 }
 
-function searchByAge(people, person){
+function searchByAge(people)   {
   let userInputAge = prompt("How old is the person?");
-    console.log(calculateAge());
-  let newArray = people.filter(function (el) {
-    if(el.age === userInputAge) {
+  let newArray = people.filter(function (el){
+    if(el.age == userInputAge) {
       return true;
+
     }
-  });
+  })
 
   return newArray;
 }
@@ -130,17 +129,39 @@ function searchByEyeColor(people){
   return newArray;
 }
 
-function calculateAge(person, currentDate){
-  person.dob = new Date(person.dob);
-  currentDate = new Date(currentDate);
+debugger;
 
-  let years = (currentDate.getFullYear() - person.dob.getFullYear());
-  if (currentDate.getMonth() < person.dob.getMonth() ||
-    currentDate.getMonth() == person.dob.getMonth() && currentDate.getDate() < person.dob.getDate()){
-    years --;
-  }
-  return years; 
+// function getAge(people) {
+//   let todaysDate = new Date();
+//   let birthDate = new Date();
+//   let age = today.getFullYear() - birthDate.getFullYear();
+//   let m = today.getMonth() - birthDate.getMonth();
+//   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())){
+//     age--;
+//   }
+//   return age;
+// }
+
+function getAge() {
+  let birthDate = new Date("1997/5/19");
+  let currentDate = new Date();
+  let difference = (currentDate - birthDate);
+  let age = Math.floor(difference/31557600000);
+  return age;
 }
+
+
+// function calculateAge(person, currentDate){
+//   person.dob = new Date(person.dob);
+//   currentDate = new Date(currentDate);
+
+//   let years = (currentDate.getFullYear() - person.dob.getFullYear());
+//   if (currentDate.getMonth() < person.dob.getMonth() ||
+//     currentDate.getMonth() == person.dob.getMonth() && currentDate.getDate() < person.dob.getDate()){
+//     years --;
+//   }
+//   return years; 
+// }
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
@@ -174,8 +195,8 @@ function mainMenu(person, people){
 }
 
 function searchByName(people){
-  var userInputFirstName = promptFor("What is the person's first name?", chars);
-  var userInputLastName = promptFor("What is the person's last name?", chars);
+  let userInputFirstName = promptFor("What is the person's first name?", chars);
+  let userInputLastName = promptFor("What is the person's last name?", chars);
   // let fullName = (firstName + lastName);
   let newArray = people.filter(function (el) {
     if(el.firstName.toLowerCase() === userInputFirstName.toLowerCase()) {
