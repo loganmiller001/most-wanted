@@ -173,9 +173,12 @@ function mainMenu(person, people){
   }
 
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
+  
 
   switch(displayOption){
     case "info":
+     let personInfo = displayPerson(person);
+     alert(personInfo);
     // TODO: get person's info
     break;
     case "family":
@@ -222,24 +225,25 @@ function displayPerson(person){
   // tall, weight, age, name, occupation, eye color.
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
-  personInfo += "Gender" + person.gender + "\n";
-  personInfo += "Age" + person.dob + "\n";
-  personInfo += "Tall" + person.tall + "\n";
-  personInfo += "Weight" + person.weight + "\n";
-  personInfo += "Eye Color" + person.eyeColor + "\n";
-  personInfo += "Occupation" + person.occupation + "\n";
-  personInfo += "Parents" + person.parents + "\n";
-  personInfo += "Spouse" + person.currentSpouse + "\n";
-    return person.firstName + " ";
-    return person.lastName + " ";
-    return person.gender + " ";
-    return person.dob + " ";
-    return person.tall + " ";
-    return person.weight + " ";
-    return person.eyeColor + " ";
-    return person.occupation + " ";
-    return person.parents + " ";
-    return person.currentSpouse + " ";
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "Age: " + person.dob + "\n";
+  personInfo += "Tall: " + person.tall + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  personInfo += "Parents: " + person.parents + "\n";
+  personInfo += "Spouse: " + person.currentSpouse + "\n";
+    // return person.firstName + " ";
+    // return person.lastName + " ";
+    // return person.gender + " ";
+    // return person.dob + " ";
+    // return person.tall + " ";
+    // return person.weight + " ";
+    // return person.eyeColor + " ";
+    // return person.occupation + " ";
+    // return person.parents + " ";
+    // return person.currentSpouse + " ";
+    return personInfo;
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
