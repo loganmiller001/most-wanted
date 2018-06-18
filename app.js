@@ -172,8 +172,8 @@ function mainMenu(person, people){
     // TODO: get person's info
     break;
     case "family":
-    let family = displayFullFamily(person);
-    alert(family);
+    let family = findParents(person, people).concat(findSpouse(person, people));
+    displayPeople(family);
     break;
     case "descendants":
     let descendants = findKids(person, people);
@@ -189,7 +189,35 @@ function mainMenu(person, people){
   }
 }
 
+function findSpouse(foundPerson, people){ 
+  let spouse = people.filter(function(person){ 
+         
+      if(person.currentSpouse == foundPerson.id) {       
+        return true;     
+      }   
+      });
+      return spouse;
+    }
 
+function findParents(foundPerson, people){
+  let parents = people.filter(function(person){
+ for (let i = 0; i < foundPerson.parents.length; i++){
+    if(foundPerson.parents[0] == person.id || foundPerson.parents[1] == person.id){
+      return true;
+    }}
+  });
+  return parents;
+}
+  
+
+  // function displayFullFamily(person, people){
+  //   let spouse = findSpouse();
+  //   let kids = findKids();
+  //   let siblings = findSiblings();
+  //   let parents = findParents();
+  //   let fullFamily = ("Spouse: " + spouse + "Kids: " + kids + "Siblings: " + siblings + "Parents: " + parents)
+  //     return fullFamily;
+  // }
 
 
 
