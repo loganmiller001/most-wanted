@@ -2,6 +2,9 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 // app is the function called to start the entire application
+
+debugger;
+
 function app(people){
   var searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNo).toLowerCase();
   switch(searchType){
@@ -20,15 +23,15 @@ function app(people){
 }
 
 function searchByTraits(people) {
-  let userSearchChoice = prompt("What would you like to search by? 'tall', 'weight', 'eye color', 'gender', 'age', 'occupation'.");
+  let userSearchChoice = prompt("What would you like to search by? 'height', 'weight', 'eye color', 'gender', 'age', 'occupation'.");
   let filteredPeople;
 
   switch(userSearchChoice) {
     case "name":
       filteredPeople = searchByName(people);
       break;
-    case "tall":
-      filteredPeople = searchByTall(people);
+    case "height":
+      filteredPeople = searchByheight(people);
       break;
     case "weight":
       filteredPeople = searchByWeight(people);
@@ -51,9 +54,9 @@ function searchByTraits(people) {
       break;
   }  
 
-  let foundPerson = filteredPeople[0];
+  let person = filteredPeople[0];
 
-  mainMenu(foundPerson, people);
+  mainMenu(person, people);
 
 }
 
@@ -69,11 +72,11 @@ function searchByWeight(people) {
   return newArray;
 }
 
-function searchByTall(people){
-  let userInputTall = prompt("How tall is the person in inches?");
+function searchByheight(people){
+  let userInputheight = prompt("How height is the person in inches?");
 
   let newArray = people.filter(function (el) {
-    if(el.tall === userInputTall) {
+    if(el.height === userInputheight) {
       return true;
     }
   });
@@ -118,65 +121,34 @@ function searchByEyeColor(people){
   return newArray;
 }
 
-debugger;
-
-// function getAge(people) {
-//   let todaysDate = new Date();
-//   let birthDate = new Date();
-//   let age = today.getFullYear() - birthDate.getFullYear();
-//   let m = today.getMonth() - birthDate.getMonth();
-//   if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())){
-//     age--;
-//   }
-//   return age;
-// }
 
 function searchByAge(people)   {
   let userInputAge = prompt("How old is the person?");
-  let age = getAge();
-  let newArray = people.filter(function (el)
-// { for (var i = age.length - 1; i >= 0; i--) {
-//   dob[i];
-// }
-
-//     {
-//     if(el.age == userInputAge) {
-//       return true;
-
-//     }
-//   }
-// })
-
-
-  {return newArray;
-})
+  let filteredPeopleAge = [];
+  let newArray = people.filter(function (el){
+    let age = getAge(el);
+      if(userInputAge == age){
+        filteredPeopleAge.push(el);
+      }
+  });
+  return newArray[0];
 }
 
+function getAge(el) {
+  let dobInfo = el.dob.split("/");
+  let dob = dobInfo;
+  let month = dob[0];
+  let day = dob[1];
+  let year = dob[2];
+  let today = new Date();
+  let age = today.getFullYear() - year;
+    if (today.getMonth() < month || (today.getMonth() == month && today.getDate() < day)){
+      age--;
+    }
+    return age;
+  }
 
-function getAge(people) {
-  let x = people.dob;
-  let birthDate = new Date();
-  let currentDate = new Date();
-  let difference = (currentDate - birthDate);
-  let age = Math.floor(difference/31557600000);
-  let newArray = people.filter(function(el){
 
-  return age;
-})
-}
-
-// function calculateAge(person, currentDate){
-//   person.dob = new Date(person.dob);
-//   currentDate = new Date(currentDate);
-
-//   let years = (currentDate.getFullYear() - person.dob.getFullYear());
-//   if (currentDate.getMonth() < person.dob.getMonth() ||
-//     currentDate.getMonth() == person.dob.getMonth() && currentDate.getDate() < person.dob.getDate()){
-//     years --;
-//   }
-//   return years; 
-// }
-// Menu function to call once you find who you are looking for
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
@@ -247,12 +219,12 @@ function displayPeople(people){
 }
 
 function displayPerson(person){
-  // tall, weight, age, name, occupation, eye color.
+  // height, weight, age, name, occupation, eye color.
   var personInfo = "First Name: " + person.firstName + "\n";
   personInfo += "Last Name: " + person.lastName + "\n";
   personInfo += "Gender: " + person.gender + "\n";
   personInfo += "Age: " + person.dob + "\n";
-  personInfo += "Tall: " + person.tall + "\n";
+  personInfo += "height: " + person.height + "\n";
   personInfo += "Weight: " + person.weight + "\n";
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
@@ -262,7 +234,7 @@ function displayPerson(person){
     // return person.lastName + " ";
     // return person.gender + " ";
     // return person.dob + " ";
-    // return person.tall + " ";
+    // return person.height + " ";
     // return person.weight + " ";
     // return person.eyeColor + " ";
     // return person.occupation + " ";
