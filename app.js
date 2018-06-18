@@ -31,7 +31,7 @@ function searchByTraits(people) {
       filteredPeople = searchByName(people);
       break;
     case "height":
-      filteredPeople = searchByheight(people);
+      filteredPeople = searchByHeight(people);
       break;
     case "weight":
       filteredPeople = searchByWeight(people);
@@ -64,7 +64,7 @@ function searchByWeight(people) {
   let userInputWeight = prompt("How much does the person weigh?");
 
   let newArray = people.filter(function (el) {
-    if(el.weight === userInputWeight) {
+    if(el.weight == userInputWeight) {
       return true;
     }
   });
@@ -72,11 +72,11 @@ function searchByWeight(people) {
   return newArray;
 }
 
-function searchByheight(people){
+function searchByHeight(people){
   let userInputheight = prompt("How height is the person in inches?");
 
   let newArray = people.filter(function (el) {
-    if(el.height === userInputheight) {
+    if(el.height == userInputheight) {
       return true;
     }
   });
@@ -88,7 +88,7 @@ function searchByGender(people){
   let userInputGender = prompt("What is the person's gender?");
 
   let newArray = people.filter(function (el) {
-    if(el.gender === userInputGender.toLowerCase()) {
+    if(el.gender == userInputGender.toLowerCase()) {
       return true;
     }
   });
@@ -102,7 +102,7 @@ function searchByOccupation(people){
   let userInputOccupation = prompt("What is this person's occupation?");
 
   let newArray = people.filter(function (el) {
-    if(el.occupation === userInputOccupation.toLowerCase()) {
+    if(el.occupation == userInputOccupation.toLowerCase()) {
       return true;
     }
   });
@@ -110,30 +110,12 @@ function searchByOccupation(people){
   return newArray;
 }
 
-function searchByAge(people){
-  let userInputAge = prompt("How old is the person?");
-  let age = getAge();
-  let newArray = people.filter(function (el) {
-    if(el.dob === userInputAge)
-      return true;
-  });
-  return newArray;
-}
-
-function getAge(person) {
-  let x = person.dob.split(" / ").reverse().join(" ");
-  let birthDate = new Date(x);
-  let currentDate = new Date();
-  let difference = (currentDate - birthDate);
-  let age = Math.floor(difference/31557600000);
-  return age;
-}
 
 function searchByEyeColor(people){
   let userInputEyeColor = prompt("What color eyes does the person have?");
 
   let newArray = people.filter(function (el){
-    if(el.eyeColor === userInputEyeColor) {
+    if(el.eyeColor == userInputEyeColor) {
       return true;
     }
   });
@@ -144,14 +126,13 @@ function searchByEyeColor(people){
 
 function searchByAge(people)   {
   let userInputAge = prompt("How old is the person?");
-  let filteredPeopleAge = [];
   let newArray = people.filter(function (el){
     let age = getAge(el);
       if(userInputAge == age){
-        filteredPeopleAge.push(el);
+        return true;
       }
   });
-  return newArray[0];
+  return newArray;
 }
 
 function getAge(el) {
