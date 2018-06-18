@@ -54,8 +54,7 @@ function searchByTraits(people) {
       break;
   }  
 
-  let person = filteredPeople[0];
-
+   let person = filteredPeople[0];
   mainMenu(person, people);
 
 }
@@ -110,24 +109,6 @@ function searchByOccupation(people){
   return newArray;
 }
 
-// function searchByAge(people){
-//   let userInputAge = prompt("How old is the person?");
-//   let age = getAge();
-//   let newArray = people.filter(function (el) {
-//     if(el.dob === userInputAge)
-//       return true;
-//   });
-//   return newArray;
-// }
-
-// function getAge(person) {
-//   let x = person.dob.split(" / ").reverse().join(" ");
-//   let birthDate = new Date(x);
-//   let currentDate = new Date();
-//   let difference = (currentDate - birthDate);
-//   let age = Math.floor(difference/31557600000);
-//   return age;
-// }
 
 function searchByEyeColor(people){
   let userInputEyeColor = prompt("What color eyes does the person have?");
@@ -188,11 +169,13 @@ function mainMenu(person, people){
     // TODO: get person's info
     break;
     case "family":
+    let family = displayFamily(person);
+    alert(family);
     // TODO: get person's family
     break;
     case "descendants":
-    let descendants = displayDescendants(person);
-    alert(descendants);
+    let descendants = findKids(person, people);
+    displayPeople(descendants);
     // TODO: get person's descendants
     break;
     case "restart":
@@ -204,6 +187,10 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+
+function displayFamily(){}
+
+function getDescendants(){}
 
 function searchByName(people){
   let userInputFirstName = promptFor("What is the person's first name?", chars);
@@ -222,13 +209,18 @@ function searchByName(people){
   return newArray[0];
 }
 
-function displayDescendants(people){
-  let newArray = people.map(function (el) {
-    if (el.parents === el.id) 
-  
-    return true;
+function findKids(foundPerson, people){
+  let children = people.filter(function(person,) {
+    for (let i = 0; i < person.parents.length; i++){
+      if (person.parents[i] == foundPerson.id){
+        return true;
+      }
+    }
   });
-  return newArray[0];
+  for (let i = 0; i < children.length; i++){
+    children = children.concat(findKids(children[i], people));
+  }
+  return children;
 }
 
 function displayPeople(people){
