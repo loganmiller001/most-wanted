@@ -111,6 +111,7 @@ function searchByOccupation(people){
 }
 
 
+
 function searchByEyeColor(people){
   let userInputEyeColor = prompt("What color eyes does the person have?");
 
