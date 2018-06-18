@@ -2,7 +2,6 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 // app is the function called to start the entire application
-
 debugger;
 
 function app(people){
@@ -152,6 +151,8 @@ function getAge(el) {
 
 
 
+
+
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
@@ -171,12 +172,12 @@ function mainMenu(person, people){
     // TODO: get person's info
     break;
     case "family":
-    // TODO: get person's family
+    let family = displayFullFamily(person);
+    alert(family);
     break;
     case "descendants":
-    let descendants = displayDescendants(person);
-    alert(descendants);
-    // TODO: get person's descendants
+    let descendants = findKids(person, people);
+    displayPeople(descendants);
     break;
     case "restart":
     app(people); // restart
@@ -187,6 +188,10 @@ function mainMenu(person, people){
     return mainMenu(person, people); // ask again
   }
 }
+
+
+
+
 
 function searchByName(people){
   let userInputFirstName = promptFor("What is the person's first name?", chars);
@@ -205,14 +210,26 @@ function searchByName(people){
   return newArray[0];
 }
 
-function displayDescendants(people){
-  let newArray = people.map(function (el) {
-    if (el.parents === el.id) 
-  
-    return true;
-  });
-  return newArray[0];
+
+
+function findKids(foundPerson, people){
+
+let children = people.filter(function(person){
+ for (let i = 0; i < person.parents.length; i++){
+   if(person.parents[i] == foundPerson.id) {
+     return true;
+   }
+ }
+ });
+
+ 
+ for (let i = 0; i < children.length; i++) {
+ 
+   children = children.concat(findKids(children[i], people));    
+ }
+   return children;
 }
+
 
 function displayPeople(people){
   alert(people.map(function(person){
