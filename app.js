@@ -108,10 +108,6 @@ function searchByOccupation(people){
   return newArray;
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 7b159da216131d5f4ad180fcd71a3407d8ef977d
 
 function searchByEyeColor(people){
   let userInputEyeColor = prompt("What color eyes does the person have?");
@@ -174,9 +170,10 @@ function mainMenu(person, people){
     // TODO: get person's info
     break;
     case "family":
-    let family = displayFullFamily(person);
-    alert(family);
->>>>>>> 7b159da216131d5f4ad180fcd71a3407d8ef977d
+    // let family = displayFullFamily(person);
+    // alert(family);
+    let family = findParents(person, people).concat(findSpouse(person, people).concat(findSiblings(person, people)));
+    displayPeople(family);
     break;
     case "descendants":
     let descendants = findKids(person, people);
@@ -192,7 +189,36 @@ function mainMenu(person, people){
   }
 }
 
+function findSpouse(foundPerson, people){
+  let spouse = people.filter(function(person){
+    if (person.currentSpouse === foundPerson.id){
+      return true;
+    }
+  });
+  return spouse;
+}
 
+function findParents(foundPerson, people){
+  let parents = people.filter(function(person){
+    for (let i = 0; i < foundPerson.parents.length; i ++){
+    if (foundPerson.parents[0] == person.id || foundPerson.parents[1] == person.id){
+      return true;
+    }
+  }
+  });
+  return parents;
+}
+
+function findSiblings(foundPerson, people){
+  let siblings = people.filter(function(person){
+    for (let i = 0; i < foundPerson.parents.length; i ++){
+      if (person.parents[i] === foundPerson.parents[i] && person.id != foundPerson.id){
+        return true;
+      }
+    }
+  });
+  return siblings;
+}
 
 function searchByName(people){
   let userInputFirstName = promptFor("What is the person's first name?", chars);
@@ -211,9 +237,8 @@ function searchByName(people){
   return newArray[0];
 }
 
-<<<<<<< HEAD
 function findKids(foundPerson, people){
-  let children = people.filter(function(person,) {
+  let children = people.filter(function(person) {
     for (let i = 0; i < person.parents.length; i++){
       if (person.parents[i] == foundPerson.id){
         return true;
