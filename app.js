@@ -2,7 +2,6 @@
 Build all of your functions for displaying and gathering information below (GUI).
 */
 // app is the function called to start the entire application
-
 debugger;
 
 function app(people){
@@ -109,6 +108,10 @@ function searchByOccupation(people){
   return newArray;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7b159da216131d5f4ad180fcd71a3407d8ef977d
 
 function searchByEyeColor(people){
   let userInputEyeColor = prompt("What color eyes does the person have?");
@@ -150,6 +153,8 @@ function getAge(el) {
 
 
 
+
+
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
@@ -169,14 +174,13 @@ function mainMenu(person, people){
     // TODO: get person's info
     break;
     case "family":
-    let family = displayFamily(person);
+    let family = displayFullFamily(person);
     alert(family);
-    // TODO: get person's family
+>>>>>>> 7b159da216131d5f4ad180fcd71a3407d8ef977d
     break;
     case "descendants":
     let descendants = findKids(person, people);
     displayPeople(descendants);
-    // TODO: get person's descendants
     break;
     case "restart":
     app(people); // restart
@@ -188,9 +192,7 @@ function mainMenu(person, people){
   }
 }
 
-function displayFamily(){}
 
-function getDescendants(){}
 
 function searchByName(people){
   let userInputFirstName = promptFor("What is the person's first name?", chars);
@@ -209,6 +211,7 @@ function searchByName(people){
   return newArray[0];
 }
 
+<<<<<<< HEAD
 function findKids(foundPerson, people){
   let children = people.filter(function(person,) {
     for (let i = 0; i < person.parents.length; i++){
@@ -222,6 +225,7 @@ function findKids(foundPerson, people){
   }
   return children;
 }
+
 
 function displayPeople(people){
   alert(people.map(function(person){
