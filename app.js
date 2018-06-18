@@ -97,6 +97,7 @@ function searchByGender(people){
 }
 
 
+
 function searchByOccupation(people){
   let userInputOccupation = prompt("What is this person's occupation?");
 
@@ -107,6 +108,25 @@ function searchByOccupation(people){
   });
 
   return newArray;
+}
+
+function searchByAge(people){
+  let userInputAge = prompt("How old is the person?");
+  let age = getAge();
+  let newArray = people.filter(function (el) {
+    if(el.dob === userInputAge)
+      return true;
+  });
+  return newArray;
+}
+
+function getAge(person) {
+  let x = person.dob.split(" / ").reverse().join(" ");
+  let birthDate = new Date(x);
+  let currentDate = new Date();
+  let difference = (currentDate - birthDate);
+  let age = Math.floor(difference/31557600000);
+  return age;
 }
 
 function searchByEyeColor(people){
@@ -149,6 +169,7 @@ function getAge(el) {
   }
 
 
+
 function mainMenu(person, people){
 
   /* Here we pass in the entire person object that we found in our search, as well as the entire original dataset of people. We need people in order to find descendants and other information that the user may want. */
@@ -188,7 +209,6 @@ function mainMenu(person, people){
 function searchByName(people){
   let userInputFirstName = promptFor("What is the person's first name?", chars);
   let userInputLastName = promptFor("What is the person's last name?", chars);
-  // let fullName = (firstName + lastName);
   let newArray = people.filter(function (el) {
     if(el.firstName.toLowerCase() === userInputFirstName.toLowerCase()) {
       if(el.lastName.toLowerCase() === userInputLastName.toLowerCase()) {
@@ -203,14 +223,14 @@ function searchByName(people){
   return newArray[0];
 }
 
-// function displayDescendants(person, people){
-//   let newArray = people.filter(function (el) {
-//     if (el.parents === el.id) 
+function displayDescendants(people){
+  let newArray = people.map(function (el) {
+    if (el.parents === el.id) 
   
-//     return true;
-//   });
-//   return newArray[0];
-// }
+    return true;
+  });
+  return newArray[0];
+}
 
 function displayPeople(people){
   alert(people.map(function(person){
@@ -230,16 +250,6 @@ function displayPerson(person){
   personInfo += "Occupation: " + person.occupation + "\n";
   personInfo += "Parents: " + person.parents + "\n";
   personInfo += "Spouse: " + person.currentSpouse + "\n";
-    // return person.firstName + " ";
-    // return person.lastName + " ";
-    // return person.gender + " ";
-    // return person.dob + " ";
-    // return person.height + " ";
-    // return person.weight + " ";
-    // return person.eyeColor + " ";
-    // return person.occupation + " ";
-    // return person.parents + " ";
-    // return person.currentSpouse + " ";
     return personInfo;
   // TODO: finish getting the rest of the information to display
   alert(personInfo);
