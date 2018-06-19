@@ -11,7 +11,7 @@ function app(people){
     searchByTraits(people);
     break;
     default:
-    alert("Wrong! Please try again, following the instructions, dummy. :)");
+    alert("Invalid Respone, Please try again, Please Enter Yes or No.");
     app(people);
     break;
   }
@@ -19,7 +19,7 @@ function app(people){
 
 function searchByTraits(people) {
   let userSearchChoice = prompt("What would you like to search by? 'height', 'weight', 'eye color', 'gender', 'age', 'occupation'.");
-  let filteredPeople;
+  let filteredPeople = people;
 
   switch(userSearchChoice) {
     case "name":
@@ -230,13 +230,14 @@ function searchByName(people){
 }
 
 function findKids(foundPerson, people){
-  let children = people.filter(function(person) {
+  let kids = people.filter(function(person) {
     for (let i = 0; i < person.parents.length; i++){
       if (person.parents[i] == foundPerson.id){
         return true;
       }
     }
   });
+  return kids;
 }
 
 
