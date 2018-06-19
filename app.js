@@ -149,10 +149,9 @@ function getAge(el) {
 
 function mainMenu(person, people){
 
-
   if(!person){
     alert("Could not find that individual.");
-    return app(people); // restart
+    return app(people);
   }
 
   var displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
@@ -248,6 +247,17 @@ function findAllDescendants(foundPerson, people){
       }
     }
   });
+}
+
+
+function findAllDescendants(foundPerson, people){
+  let children = people.filter(function(person) {
+    for (let i = 0; i < person.parents.length; i++){
+      if (person.parents[i] == foundPerson.id){
+        return true;
+      }
+    }
+  });
   for (let i = 0; i < children.length; i++){
     children = children.concat(findAllDescendants(children[i], people));
   }
@@ -283,8 +293,8 @@ function displayPerson(person){
   personInfo += "Parents: " + person.parents + "\n";
   personInfo += "Spouse: " + person.currentSpouse + "\n";
     return personInfo;
+<<<<<<< HEAD
   console.log(personInfo);
-}
 
 function promptFor(question, valid){
   do{
